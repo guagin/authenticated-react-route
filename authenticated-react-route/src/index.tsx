@@ -3,10 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import { createStore, compose } from 'redux';
+import { Current } from './store/current/type';
+import currentReducer from './store/current/reducer';
+
+const composeEnhancers = compose;
+
+const store = createStore<Current, any, any, any>(
+  currentReducer,
+  undefined,
+  composeEnhancers()
+);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
