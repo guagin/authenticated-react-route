@@ -1,13 +1,13 @@
-import { Authenticate, Unauthenticate } from './action';
-import { AUTHENTICATE, UNAUTHENTICATE } from './constants';
-import { Current } from 'types';
+import { AuthenticationAction } from './action';
+import { AUTHENTICATE, UNAUTHENTICATE } from './constant';
+import { Current } from './type';
 
 export default function currentReducer(
   state: Current = {
-    userId: null,
+    userId: '',
     isAuthenticated: false,
   },
-  action: Authenticate | Unauthenticate
+  action: AuthenticationAction
 ): Current {
   switch (action.type) {
     case AUTHENTICATE:
@@ -19,7 +19,7 @@ export default function currentReducer(
 
     case UNAUTHENTICATE:
       return {
-        userId: null,
+        userId: '',
         isAuthenticated: false,
       };
   }
